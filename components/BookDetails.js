@@ -1,10 +1,11 @@
 import { View, Text } from 'react-native';
 
 const BookDetails = () => {
+    //details of searched book
 
     return (
         <View>
-            <Text>detailed book here</Text>
+            <Text>more details of book here</Text>
         </View>
     );
 };

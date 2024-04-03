@@ -2,17 +2,17 @@ import React, { useRef } from 'react';
 import { View, TextInput, TouchableOpacity, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useGlobalContext } from '../context';
+import styles from '../styles/styles';
 
 const Search = () => {
-  const { setSearchTerm, setResultTitle } = useGlobalContext();
+  const { setSearchTerm } = useGlobalContext();
   const searchText = useRef('');
   const navigation = useNavigation();
 
   const handleSubmit = () => {
     const tempSearchTerm = searchText.current.trim();
     if (tempSearchTerm === '') {
-      setSearchTerm("Lord of the rings");
-      setResultTitle("Search ...");
+      setSearchTerm(""); // set placeholder search term.
     } else {
       setSearchTerm(tempSearchTerm);
     }
@@ -30,7 +30,7 @@ const Search = () => {
           placeholder="search ..."
           onChangeText={(text) => searchText.current = text}
         />
-        <TouchableOpacity onPress={handleSubmit}>
+        <TouchableOpacity onPress={handleSubmit} style={styles.searchButton}>
           <Text>Search</Text>
         </TouchableOpacity>
       </View>

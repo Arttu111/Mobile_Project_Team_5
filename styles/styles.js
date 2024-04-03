@@ -1,6 +1,12 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
+  searchButton: {
+    backgroundColor: 'gray',
+    padding: 6,
+    border: "1px solid black",
+    borderRadius: 5,
+  },
   loading: {
     flex: 1,
     justifyContent: 'center',
