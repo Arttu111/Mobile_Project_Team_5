@@ -26,12 +26,12 @@ const Search = () => {
     <View>
       <View>
         <TextInput
-          style={{ height: 40, borderColor: 'gray', borderWidth: 1, paddingHorizontal: 10 }}
+          style={{ height: 40, borderColor: 'gray', borderWidth: 1, paddingHorizontal: 10, marginTop: 20,fontWeight:"bold",fontSize:20, }}
           placeholder="search ..."
           onChangeText={(text) => searchText.current = text}
         />
         <TouchableOpacity onPress={handleSubmit} style={styles.searchButton}>
-          <Text>Search</Text>
+          <Text style={{ fontWeight:"bold" , color:"white", fontSize:20}}>Search</Text>
         </TouchableOpacity>
       </View>
     </View>

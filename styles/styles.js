@@ -1,21 +1,25 @@
+import { CurrentRenderContext } from '@react-navigation/native';
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   searchButton: {
-    backgroundColor: 'gray',
-    padding: 6,
+    backgroundColor: '#BF40BF',
+    padding: 10,
     border: "1px solid black",
     borderRadius: 5,
+    
   },
   loading: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor:"#fcf0e4"
   },
   booklistContent: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
+    backgroundColor:"#fcf0e4"
   },
   bookItem: {
     width: '100%',
@@ -38,12 +42,26 @@ const styles = StyleSheet.create({
   },
   titleText: {
     fontWeight: 'bold',
-    fontSize: 12,
+    fontSize: 20,
     color: "black"
   },
   booklist: {
     flex: 1,
   },
+
+  homeText:{
+  fontSize: 20,
+  fontWeight: "bold",
+  textAlign: "center",
+  paddingTop: 20,
+  
+  },
+  summaryText:{
+    paddingTop:18,
+  fontSize:20,
+  fontWeight:"bold",
+  }
+  
 });
 
   export default styles;
