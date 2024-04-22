@@ -1,9 +1,14 @@
 import React from 'react';
 import { View, Text, Image, Linking, TouchableOpacity, ScrollView } from 'react-native';
 import { useState } from 'react';
+
 //display editions of the book in horizontal scroll view if api allows for it and books of the same author or subject
 //display description of the book if available in the api
+
+//for other components--> (if login or cookies etc. are implemented??)
 //maybe a way to add specific books to a list of favorites
+//maybe a way to follow an author
+// ask user at the beginning of the app if they want to see books by a specific author or subject
 
 const BookDetails = ({ route }) => {
     const { title, author, edition_count, first_publish_year, cover_img,
