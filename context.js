@@ -36,7 +36,12 @@ const AppProvider = ({ children }) => {
                     cover_id: singleBook.cover_i,
                     edition_count: singleBook.edition_count,
                     first_publish_year: singleBook.first_publish_year,
-                    title: singleBook.title, 
+                    title: singleBook.title,
+                    available_online: singleBook.ebook_count_i > 0 ? true : false,
+                    bookURL: `https://openlibrary.org${singleBook.key}`,
+                    description: singleBook.description,
+                    publisher: singleBook.publisher,
+                    subject: singleBook.subject,
                     // add more info here if needed
                 }));
 
