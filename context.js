@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { useCallback } from 'react';
 
 const URL = "http://openlibrary.org/search.json?";
+const FIXED_SUBJECTS = ["Technology", "Science", "History", "Art", "Fiction"]
 
 const AppContext = React.createContext();
 
@@ -71,7 +72,8 @@ const AppProvider = ({ children }) => {
             setSearchTerm,
             setCategory,
             setAuthor,
-            resultTitle
+            resultTitle,
+            FIXED_SUBJECTS
         }}>
             {children}
         </AppContext.Provider>
