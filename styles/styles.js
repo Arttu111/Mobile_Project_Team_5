@@ -60,9 +60,40 @@ const styles = StyleSheet.create({
     paddingTop:18,
   fontSize:20,
   fontWeight:"bold",
-  }
-  
+  },
+  recBookItem: {
+    width: '30%',
+    marginBottom: 20,
+    borderBottomWidth: 1,
+    borderColor: '#ccc',
+    paddingBottom: 10,
+  },
+  recBookItemImage: {
+    marginRight: 10,
+    width: '100%', 
+    height: 150,
+  },
+  recImage: {
+    flex: 1,
+    borderRadius: 5,
+  },
+  recBookItemInfo: {
+    flex: 1,
+  },
+  recTitleText: {
+    fontWeight: 'bold',
+    fontSize: 16, 
+    color: "black"
+  },
+  recAuthorText: {
+    fontSize: 14, 
+    color: "#666" 
+  },
+  authorText: {
+    fontSize: 14,
+    color: "black"
+  },
 });
 
-  export default styles;
+export default styles;
   

@@ -10,6 +10,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const Preferences = () => {
     const navigation = useNavigation();
     const { FIXED_SUBJECTS} = useGlobalContext();
+    const { globalsubjects, setGlobalSubjects } = useGlobalContext();
     const [selectedSubjects, setSelectedSubjectsLocal] = useState([]); 
 
     //fetch user preferences from local storage
@@ -19,8 +20,9 @@ const Preferences = () => {
                 const preferences = await AsyncStorage.getItem('userPreferences');
                 if (preferences) {
                     setSelectedSubjectsLocal(JSON.parse(preferences));
+                    setGlobalSubjects(JSON.parse(preferences));
                     console.log('Preferences fetched:', JSON.parse(preferences));
-                }
+            }
             } catch (error) {
                 console.log('Error fetching preferences:', error);
             }
@@ -32,19 +34,22 @@ const Preferences = () => {
     //toggle function to add or remove preferences in the preferences screen
     const toggleSubjectSelection = (subject) => {
         setSelectedSubjectsLocal(prevSelectedSubjects => {
+            let updatedsubjects;
             if (prevSelectedSubjects.includes(subject)) {
                 console.log(prevSelectedSubjects.filter(item => item !== subject), 'removed preference -> ', subject);
-                return prevSelectedSubjects.filter(item => item !== subject);
+                updatedsubjects = prevSelectedSubjects.filter(item => item !== subject);
             } else {
                 console.log("added preference",[...prevSelectedSubjects, subject]);
-                return [...prevSelectedSubjects, subject];
+                updatedsubjects = [...prevSelectedSubjects, subject];
             }
+            return updatedsubjects;
         });
     };
 
     const handleConfirm = async () => {
         try {
             await AsyncStorage.setItem('userPreferences', JSON.stringify(selectedSubjects));
+            setGlobalSubjects(selectedSubjects);
             console.log('Preferences confirmed');
             navigation.navigate('Home');
         } catch (error) {

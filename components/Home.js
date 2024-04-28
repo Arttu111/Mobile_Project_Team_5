@@ -17,11 +17,11 @@ export default function App() {
         <Text style={styles.homeText}>Search books from our library!</Text>
         <Search />
         <Text style={styles.summaryText}>Explore our library's vast collection! Search for books by title, author, or genre. Find your next read easily with our app.</Text>
+          <PreferenceList />
         <Image
           source={require('../images/Book.jpg')}
           style={{ width: '100%', height: 200, resizeMode: 'cover', marginTop: 100 }}
         />
-        <PreferenceList />
         <StatusBar style="auto" />
       </ScrollView>
       <Footer />
