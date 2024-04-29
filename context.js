@@ -161,6 +161,7 @@ const AppProvider = ({ children }) => {
             setRecLoading,
             books,
             recBooks,
+            setRecBooks,
             setSearchTerm,
             setCategory,
             setAuthor,

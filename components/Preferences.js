@@ -10,7 +10,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const Preferences = () => {
     const navigation = useNavigation();
     const { FIXED_SUBJECTS} = useGlobalContext();
-    const { globalsubjects, setGlobalSubjects } = useGlobalContext();
+    const { globalsubjects, setGlobalSubjects, recBooks, setRecBooks } = useGlobalContext();
     const [selectedSubjects, setSelectedSubjectsLocal] = useState([]); 
 
     //fetch user preferences from local storage
@@ -50,6 +50,7 @@ const Preferences = () => {
         try {
             await AsyncStorage.setItem('userPreferences', JSON.stringify(selectedSubjects));
             setGlobalSubjects(selectedSubjects);
+            setRecBooks([]);
             console.log('Preferences confirmed');
             navigation.navigate('Home');
         } catch (error) {

@@ -16,8 +16,9 @@ const PreferencesList = () => {
   }, [recBooks]);
 
   useEffect(() => {
-    if (globalsubjects===null || globalsubjects.length === 0) {
+    if (globalsubjects===null || globalsubjects.length === 0 && recBooks.length === 0) {
       setRecTitle("Select preferences to get recommendations");
+      setFetchLoading(false);
     }
   }, [globalsubjects]);
 
