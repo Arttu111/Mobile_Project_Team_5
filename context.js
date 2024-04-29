@@ -85,7 +85,10 @@ const AppProvider = ({ children }) => {
             let allBooks = [];
             let query = "";
             if (globalsubjects) {
-                console.log("Global subjects:", globalsubjects)
+                console.log("Global subjects:", globalsubjects);
+                const subjectsCount = globalsubjects.length;
+                const booksPerSubject = Math.ceil(60 / subjectsCount); // Calculate the approximate number of books per subject
+    
                 for (const subject of globalsubjects) {
                     query = `q=${encodeURIComponent(subject)}`;
                     const response = await fetch(`${URL}${query}`);
@@ -95,48 +98,57 @@ const AppProvider = ({ children }) => {
                     }
                     const { docs } = data;
                     if (docs) {
-                        const slicedDocs = docs.slice(0, 20);
-                        allBooks.push(...slicedDocs);
-                        // log the amount of books fetched for each subject
+                        const slicedDocs = docs.slice(0, booksPerSubject);
+                        const newBooks = slicedDocs.map((singleBook) => ({
+                            id: singleBook.key,
+                            author: singleBook.author_name,
+                            cover_id: singleBook.cover_i,
+                            edition_count: singleBook.edition_count,
+                            first_publish_year: singleBook.first_publish_year,
+                            title: singleBook.title,
+                            available_online: singleBook.ebook_count_i > 0 ? true : false,
+                            bookURL: `https://openlibrary.org${singleBook.key}`,
+                            description: singleBook.description,
+                            publisher: singleBook.publisher,
+                            subject: singleBook.subject,
+                            // add more info here if needed
+                        }));
+    
+                        shuffleArray(newBooks);
+                        allBooks.push(...newBooks);
+                        // update state with the new books
+                        setRecBooks((prevBooks) => [...prevBooks, ...newBooks]);
+                        // Log the amount of books fetched for each subject
                         console.log(`Fetched ${slicedDocs.length} books for ${subject}`);
                     }
                 }
             }
-    
-            if (allBooks.length > 0) {
-                const newBooks = allBooks.map((singleBook) => ({
-                    id: singleBook.key,
-                    author: singleBook.author_name,
-                    cover_id: singleBook.cover_i,
-                    edition_count: singleBook.edition_count,
-                    first_publish_year: singleBook.first_publish_year,
-                    title: singleBook.title,
-                    available_online: singleBook.ebook_count_i > 0 ? true : false,
-                    bookURL: `https://openlibrary.org${singleBook.key}`,
-                    description: singleBook.description,
-                    publisher: singleBook.publisher,
-                    subject: singleBook.subject,
-                    // add more info here if needed
-                }));
-    
-                setRecBooks(newBooks);
-                setRecTitle("");
-            } else {
-                setRecBooks([]);
-            }
+            shuffleArray(allBooks);
+            setRecBooks(allBooks);
             setRecLoading(false);
+            setRecTitle("");
         } catch (error) {
             console.log("Error fetching recommended books:", error);
             setRecTitle("Failed to load recommended books");
             setRecLoading(false);
         }
     }, [globalsubjects]);
+    
+    // shuffle recommendations
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    }
+    
+    
 
     // effect hook to fetch books when searchTerm changes
     useEffect(() => {
         fetchBooks();
     }, [searchTerm, category, author, fetchBooks]);
-    // effect hook to fetch books when globalsubjects changes
+    // effect hook to fetch recommended books when globalsubjects changes
     useEffect(() => {
         fetchSubjectBooks();
     }, [globalsubjects, fetchSubjectBooks]);
@@ -146,6 +158,7 @@ const AppProvider = ({ children }) => {
         <AppContext.Provider value={{
             loading,
             recLoading,
+            setRecLoading,
             books,
             recBooks,
             setSearchTerm,
@@ -153,6 +166,7 @@ const AppProvider = ({ children }) => {
             setAuthor,
             resultTitle,
             recTitle,
+            setRecTitle,
             FIXED_SUBJECTS,
             globalsubjects,
             setGlobalSubjects,

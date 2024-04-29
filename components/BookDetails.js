@@ -7,7 +7,6 @@ import { useState } from 'react';
 
 //maybe a way to add specific books to a list of favorites
 //maybe a way to follow an author
-// ask user at the beginning of the app for preferences
 
 const BookDetails = ({ route }) => {
     const { title, author, edition_count, first_publish_year, cover_img,

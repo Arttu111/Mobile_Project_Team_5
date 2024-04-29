@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useGlobalContext } from '../context';
 import RecBook from './RecBook';
 import styles from '../styles/styles';
@@ -6,8 +6,21 @@ import { View, Text, ScrollView } from 'react-native';
 import Loading from "./Loading";
 
 const PreferencesList = () => {
-  const { recBooks, recLoading, recTitle } = useGlobalContext();
-  
+  const { recBooks, recLoading, recTitle, globalsubjects, setRecTitle } = useGlobalContext();
+  const [fetchLoading, setFetchLoading] = useState(true);
+
+  useEffect(() => {
+    if(recBooks.length > 0) {
+      setFetchLoading(false);
+    }
+  }, [recBooks]);
+
+  useEffect(() => {
+    if (globalsubjects===null || globalsubjects.length === 0) {
+      setRecTitle("Select preferences to get recommendations");
+    }
+  }, [globalsubjects]);
+
   // add cover image URLs and format book IDs
   const recBooksWithCovers = recBooks.map((singleBook) => {
     return {
@@ -17,7 +30,7 @@ const PreferencesList = () => {
     }
   });
 
-  if (recLoading) {
+  if (fetchLoading) {
     return <Loading />;
   }
 
@@ -26,9 +39,10 @@ const PreferencesList = () => {
       <View>
         <Text>{recTitle}</Text>
         <View style={styles.booklistContent}>
-          {recBooksWithCovers.map((item, index) => (
-            <RecBook key={index} {...item} />
+          {recBooksWithCovers.map((book, index) => (
+            <RecBook key={`${book.id}-${index}`} {...book} />
           ))}
+          {recLoading && <Loading />}
         </View>
       </View>
     </ScrollView>
