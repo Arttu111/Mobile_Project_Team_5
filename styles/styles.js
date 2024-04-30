@@ -14,9 +14,11 @@ const styles = StyleSheet.create({
     padding: 10,
     border: "1px solid black",
     borderRadius: 5,
+    alignItems: 'center'
   },
   layoutButtonText: {
     color: '#000000',
+    alignItems: 'center'
   },
   loading: {
     flex: 1,
@@ -100,7 +102,7 @@ const styles = StyleSheet.create({
   },
   authorText: {
     fontSize: 14,
-    color: "black"
+    color: "black",
   },
 });
 
