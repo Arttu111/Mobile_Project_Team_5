@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useGlobalContext } from '../context';
 import Book from "./Book";
 import styles from '../styles/styles';
@@ -16,14 +16,17 @@ const BookList = () => {
     }
   });
 
+  const [viewLayoutState, setViewLayoutState] = useState(viewLayout);
   const changeLayout = () => {
       if (viewLayout == totalViewLayouts)
       {
           viewLayout = 1;
+          setViewLayoutState(viewLayout);
       }
       else
       {
           viewLayout = viewLayout + 1;
+          setViewLayoutState(viewLayout);
       }
   }
 
@@ -31,9 +34,9 @@ const BookList = () => {
 
   return (
       <View>
-          <TouchableOpacity onPress={handleSubmit} style={styles.layoutButton}>
+          <TouchableOpacity onPress={changeLayout} style={styles.layoutButton}>
               <Text style={styles.layoutButtonText}>Change Layout</Text>
-              <Text>{viewLayout}</Text>
+              <Text>{viewLayoutState}</Text>
           </TouchableOpacity>
         <ScrollView contentContainerStyle={styles.booklistContent}>
           <View >
