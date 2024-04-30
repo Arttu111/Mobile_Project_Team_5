@@ -1,2 +1,2 @@
 global.viewLayout = 1;
-global.totalViewLayouts = 2;
+global.totalViewLayouts = 4;
