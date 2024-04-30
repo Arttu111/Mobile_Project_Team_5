@@ -21,13 +21,12 @@ const BookList = () => {
       if (viewLayout == totalViewLayouts)
       {
           viewLayout = 1;
-          setViewLayoutState(viewLayout);
       }
       else
       {
           viewLayout = viewLayout + 1;
-          setViewLayoutState(viewLayout);
       }
+      setViewLayoutState(viewLayout);
   }
 
   if (loading) return <Loading />;
