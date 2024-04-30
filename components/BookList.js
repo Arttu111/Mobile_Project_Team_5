@@ -2,7 +2,7 @@ import React from 'react';
 import { useGlobalContext } from '../context';
 import Book from "./Book";
 import styles from '../styles/styles';
-import { View, Text, ScrollView } from 'react-native';
+import {View, Text, ScrollView, TouchableOpacity} from 'react-native';
 import Loading from "./Loading";
 
 const BookList = () => {
@@ -16,22 +16,39 @@ const BookList = () => {
     }
   });
 
+  const changeLayout = () => {
+      if (viewLayout == totalViewLayouts)
+      {
+          viewLayout = 1;
+      }
+      else
+      {
+          viewLayout = viewLayout + 1;
+      }
+  }
+
   if (loading) return <Loading />;
 
   return (
-    <ScrollView contentContainerStyle={styles.booklistContent}>
-      <View >
-        <View >
-          <Text>{resultTitle}</Text>
-        </View>
-        <View style={styles.booklistContent}>
-          {booksWithCovers.slice(0, 50).map((item, index) => (
-            <Book key={index} {...item} />
-            
-          ))}
-        </View>
+      <View>
+          <TouchableOpacity onPress={handleSubmit} style={styles.layoutButton}>
+              <Text style={styles.layoutButtonText}>Change Layout</Text>
+              <Text>{viewLayout}</Text>
+          </TouchableOpacity>
+        <ScrollView contentContainerStyle={styles.booklistContent}>
+          <View >
+            <View >
+              <Text>{resultTitle}</Text>
+            </View>
+            <View style={styles.booklistContent}>
+              {booksWithCovers.slice(0, 50).map((item, index) => (
+                <Book key={index} {...item} />
+
+              ))}
+            </View>
+          </View>
+        </ScrollView>
       </View>
-    </ScrollView>
   );
 };
 

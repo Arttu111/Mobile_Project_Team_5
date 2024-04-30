@@ -9,6 +9,15 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     
   },
+  layoutButton: {
+    backgroundColor: '#fffff',
+    padding: 10,
+    border: "1px solid black",
+    borderRadius: 5,
+  },
+  layoutButtonText: {
+    color: '#000000',
+  },
   loading: {
     flex: 1,
     justifyContent: 'center',

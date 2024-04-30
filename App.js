@@ -15,6 +15,8 @@ import PreferenceList from './components/PreferenceList';
 import Loading from './components/Loading';
 import Settings from './components/Settings';
 
+import './global.js'
+
 const Stack = createStackNavigator();
 
 export default function App() {
