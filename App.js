@@ -21,47 +21,47 @@ const Stack = createStackNavigator();
 
 export default function App() {
        //Function to clear localstorage user preferences on app launch (for testing)
-      //     useEffect(() => {
-      //      const clearPreferencesOnLaunch = async () => {
-      //          try {
-      //              await AsyncStorage.removeItem('userPreferences');
-      //              console.log('User preferences cleared on app launch.');
-      //              console.log('Preferences:', await AsyncStorage.getItem('userPreferences'));
-      //          } catch (error) {
-      //              console.log('Error clearing preferences on app launch:', error);
-      //         }
-      //      };
+        //    useEffect(() => {
+        //     const clearPreferencesOnLaunch = async () => {
+        //         try {
+        //             await AsyncStorage.removeItem('userPreferences');
+        //             console.log('User preferences cleared on app launch.');
+        //             console.log('Preferences:', await AsyncStorage.getItem('userPreferences'));
+        //         } catch (error) {
+        //             console.log('Error clearing preferences on app launch:', error);
+        //        }
+        //     };
 
-      //      clearPreferencesOnLaunch();
-      //  }, []);
+        //     clearPreferencesOnLaunch();
+        // }, []);
 
      const [initialRoute, setInitialRoute] = useState(null);
      const [loading, setLoading] = useState(true);
 
-     useEffect(() => {
-       const determineInitialRoute = async () => {
+      useEffect(() => {
+        const determineInitialRoute = async () => {
       
-         try {
-           const preferences = await AsyncStorage.getItem('userPreferences');
-           console.log('Preferences:', preferences);
-           return preferences ? 'Home' : 'Preferences';
-         } catch (error) {
-           console.log('Error determining initial route:', error);
-           return null;
-         }
-       };
+          try {
+            const preferences = await AsyncStorage.getItem('userPreferences');
+            console.log('Preferences:', preferences);
+            return preferences && JSON.parse(preferences).length > 0 ? 'Home' : 'Preferences';
+          } catch (error) {
+            console.log('Error determining initial route:', error);
+            return null;
+          }
+        };
 
-       determineInitialRoute().then(route => {
-         setInitialRoute(route);
-         setLoading(false);
-         console.log('Initial route set to:', route);
-       });
-     }, []);
+        determineInitialRoute().then(route => {
+          setInitialRoute(route);
+          setLoading(false);
+          console.log('Initial route set to:', route);
+        });
+      }, []);
 
-     if (loading) {
-       return <Loading />;
-     }
-     console.log(initialRoute)
+      if (loading) {
+        return <Loading />;
+      }
+      console.log(initialRoute)
 
   return (
   <AppProvider>
