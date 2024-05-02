@@ -20,11 +20,23 @@ const styles = StyleSheet.create({
     color: '#000000',
     alignItems: 'center'
   },
-  loading: {
+  loadingText: {
+    fontSize: 19,
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor:"#fcf0e4"
+  },
+  loading: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    backgroundColor:"#fcf0e4",
+    paddingVertical: 30
+  },
+  animation: {
+    height: 210,
+    aspectRatio: 1
   },
   booklistContent: {
     flexDirection: 'row',
