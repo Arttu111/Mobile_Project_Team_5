@@ -4,6 +4,7 @@ import RecBook from './RecBook';
 import styles from '../styles/styles';
 import { View, Text, ScrollView } from 'react-native';
 import Loading from "./Loading";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const PreferencesList = () => {
   const { recBooks, recLoading, recTitle, globalsubjects, setRecTitle } = useGlobalContext();
@@ -13,10 +14,14 @@ const PreferencesList = () => {
     if(recBooks.length > 0) {
       setFetchLoading(false);
     }
+    else {
+      setFetchLoading(true);
+    }
   }, [recBooks]);
 
   useEffect(() => {
-    if (globalsubjects===null || globalsubjects.length === 0 && recBooks.length === 0) {
+    const preferences = AsyncStorage.getItem('userPreferences');
+    if (globalsubjects===null || globalsubjects.length === 0 && recBooks.length === 0 && preferences===null || preferences.length === 0) {
       setRecTitle("Select preferences to get recommendations");
       setFetchLoading(false);
     }
@@ -43,8 +48,8 @@ const PreferencesList = () => {
           {recBooksWithCovers.map((book, index) => (
             <RecBook key={`${book.id}-${index}`} {...book} />
           ))}
-          {recLoading && <Loading />}
         </View>
+        {recLoading && <Loading />}
       </View>
     </ScrollView>
   );
