@@ -70,7 +70,7 @@ export default function App() {
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Preferences" component={Preferences} />
           <Stack.Screen name="Search" component={Search} />
-          <Stack.Screen name="BookList" component={BookList} />
+          <Stack.Screen name="BookList" component={BookList} options={({route}) => ({title: "Search: " + route.params.name})}/>
           <Stack.Screen name="BookCover" component={Book} />
           <Stack.Screen name="Details" component={BookDetails} />
           <Stack.Screen name="PreferenceList" component={PreferenceList} />

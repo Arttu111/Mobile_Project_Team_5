@@ -17,7 +17,7 @@ const Search = () => {
       setSearchTerm(tempSearchTerm);
     }
     // navigate to BookList
-    navigation.navigate('BookList');
+    navigation.navigate('BookList', {name: tempSearchTerm});
 
     console.log(tempSearchTerm);
   };
