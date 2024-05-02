@@ -4,28 +4,24 @@ import RecBook from './RecBook';
 import styles from '../styles/styles';
 import { View, Text, ScrollView } from 'react-native';
 import Loading from "./Loading";
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const PreferencesList = () => {
   const { recBooks, recLoading, recTitle, globalsubjects, setRecTitle } = useGlobalContext();
-  const [fetchLoading, setFetchLoading] = useState(true);
+  const [fetchLoading, setFetchLoading] = useState(false);
 
   useEffect(() => {
     if(recBooks.length > 0) {
       setFetchLoading(false);
     }
-    else {
+    else if(globalsubjects && globalsubjects.length > 0){
+      setRecTitle("");
       setFetchLoading(true);
     }
-  }, [recBooks]);
-
-  useEffect(() => {
-    const preferences = AsyncStorage.getItem('userPreferences');
-    if (globalsubjects===null || globalsubjects.length === 0 && recBooks.length === 0 && preferences===null || preferences.length === 0) {
+    else if (!globalsubjects || globalsubjects.length === 0 && !recBooks || recBooks.length === 0) {
       setRecTitle("Select preferences to get recommendations");
       setFetchLoading(false);
     }
-  }, [globalsubjects]);
+  }, [recBooks, globalsubjects]);
 
   // add cover image URLs and format book IDs
   const recBooksWithCovers = recBooks.map((singleBook) => {
