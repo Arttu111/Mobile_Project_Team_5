@@ -133,6 +133,7 @@ const styles = StyleSheet.create({
   },
   settingsContainer: {
     alignItems: 'center',
+    backgroundColor: "#fcf0e4"
   },
 });
 

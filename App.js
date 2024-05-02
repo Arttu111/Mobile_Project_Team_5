@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { AppProvider } from './context';
 import { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import Home from './components/Home';
 import Search from './components/Search';
@@ -20,22 +21,9 @@ import './global.js'
 
 const Stack = createStackNavigator();
 
+const navigationRef = React.createRef();
+
 export default function App() {
-       //Function to clear localstorage user preferences on app launch (for testing)
-        //    useEffect(() => {
-        //     const clearPreferencesOnLaunch = async () => {
-        //         try {
-        //             await AsyncStorage.removeItem('userPreferences');
-        //             console.log('User preferences cleared on app launch.');
-        //             console.log('Preferences:', await AsyncStorage.getItem('userPreferences'));
-        //         } catch (error) {
-        //             console.log('Error clearing preferences on app launch:', error);
-        //        }
-        //     };
-
-        //     clearPreferencesOnLaunch();
-        // }, []);
-
      const [initialRoute, setInitialRoute] = useState(null);
      const [loading, setLoading] = useState(true);
 
@@ -65,21 +53,35 @@ export default function App() {
       console.log(initialRoute)
 
   return (
-  <AppProvider>
-   <NavigationContainer>
-        <Stack.Navigator initialRouteName={initialRoute}>
-          <Stack.Screen name="Home" component={Home} />
-          <Stack.Screen name="Preferences" component={Preferences} />
-          <Stack.Screen name="Search" component={Search} />
-          <Stack.Screen name="BookList" component={BookList} options={({route}) => ({title: "Search: " + route.params.name})}/>
-          <Stack.Screen name="BookCover" component={Book} />
-          <Stack.Screen name="Details" component={BookDetails} />
-          <Stack.Screen name="PreferenceList" component={PreferenceList} />
-          <Stack.Screen name="Settings" component={Settings} />
-          <Stack.Screen name="FullscreenCover" component={FullscreenCover}  options={({route}) => ({title: "Cover: " + route.params.name})}/>
-        </Stack.Navigator>
-      </NavigationContainer>
-    </AppProvider>
-  
+    <AppProvider>
+    <NavigationContainer ref={navigationRef}>
+      <Stack.Navigator initialRouteName={initialRoute}>
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          options={{
+            headerRight: () => (
+              <MaterialCommunityIcons
+                name="cog"
+                size={24}
+                color="black"
+                style={{ marginRight: 20 }}
+                onPress={() => navigationRef.current.navigate('Settings')}
+              />
+            ),
+            headerLeft:null
+          }}
+        />
+        <Stack.Screen name="Preferences" component={Preferences}/>
+        <Stack.Screen name="Search" component={Search} />
+        <Stack.Screen name="BookList" component={BookList} options={({ route }) => ({ title: "Search: " + route.params.name })} />
+        <Stack.Screen name="BookCover" component={Book} />
+        <Stack.Screen name="Details" component={BookDetails} />
+        <Stack.Screen name="PreferenceList" component={PreferenceList} />
+        <Stack.Screen name="Settings" component={Settings} options={{ headerTitle: "" }} />
+        <Stack.Screen name="FullscreenCover" component={FullscreenCover} options={({ route }) => ({ title: "Cover: " + route.params.name })} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  </AppProvider>
   );
 }
