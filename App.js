@@ -14,6 +14,7 @@ import Preferences from './components/Preferences';
 import PreferenceList from './components/PreferenceList';
 import Loading from './components/Loading';
 import Settings from './components/Settings';
+import FullscreenCover from './components/FullscreenCover';
 
 import './global.js'
 
@@ -75,6 +76,7 @@ export default function App() {
           <Stack.Screen name="Details" component={BookDetails} />
           <Stack.Screen name="PreferenceList" component={PreferenceList} />
           <Stack.Screen name="Settings" component={Settings} />
+          <Stack.Screen name="FullscreenCover" component={FullscreenCover}  options={({route}) => ({title: "Cover: " + route.params.name})}/>
         </Stack.Navigator>
       </NavigationContainer>
     </AppProvider>

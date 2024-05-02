@@ -1,6 +1,9 @@
 import React from 'react';
 import { View, Text, Image, Linking, TouchableOpacity, ScrollView } from 'react-native';
 import { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import { useGlobalContext } from '../context';
+import styles from "../styles/styles";
 
 //display editions of the book in horizontal scroll view if api allows for it and books of the same author or subject
 //display description of the book if available in the api
@@ -17,6 +20,8 @@ const BookDetails = ({ route }) => {
             Linking.openURL(bookURL);
         }
     }
+
+    const navigation = useNavigation();
 
     const [showAllPublishers, setShowAllPublishers] = useState(false);
     const [showAllSubjects, setShowAllSubjects] = useState(false);
@@ -50,10 +55,16 @@ const BookDetails = ({ route }) => {
         }
     };
 
+    const openCover = () => {
+        navigation.navigate('FullscreenCover', {name: title, bookCover: {cover_img}});
+    }
+
     return (
         <ScrollView>
             <View>
-                <Image source={{ uri: cover_img }} style={{ width: 200, height: 300 }} />
+                <TouchableOpacity onPress={openCover}>
+                    <Image source={{ uri: cover_img }} style={{ width: 200, height: 300 }} />
+                </TouchableOpacity>
                 <Text>Title: {title}</Text>
                 <Text>Author: {Array.isArray(author) ? author.join(", ") : 'No author information available'}</Text>
                 <Text>Total Editions: {edition_count}</Text>
