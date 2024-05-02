@@ -104,6 +104,24 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: "black",
   },
+  preferencesButton: {
+    backgroundColor: '#BF40BF',
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    borderRadius: 8,
+    marginBottom: 10,
+    marginTop:20,
+    width: "80%",
+    alignItems: "center",
+  },
+  buttonText: {
+    color: '#ffffff',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  settingsContainer: {
+    alignItems: 'center',
+  },
 });
 
 export default styles;

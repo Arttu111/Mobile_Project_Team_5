@@ -19,10 +19,16 @@ const Preferences = () => {
             try {
                 const preferences = await AsyncStorage.getItem('userPreferences');
                 if (preferences) {
-                    setSelectedSubjectsLocal(JSON.parse(preferences));
-                    setGlobalSubjects(JSON.parse(preferences));
-                    console.log('Preferences fetched:', JSON.parse(preferences));
-            }
+                    const parsedPreferences = JSON.parse(preferences);
+                    setSelectedSubjectsLocal(parsedPreferences);
+                    if (JSON.stringify(parsedPreferences) !== JSON.stringify(globalsubjects)) {
+                        setGlobalSubjects(parsedPreferences);
+                        console.log('Global subjects updated with preferences:', parsedPreferences);
+                    } else {
+                        console.log('Global subjects remain unchanged to prevent unnecessary fetching');
+                    }
+                    console.log('Current preferences:', JSON.parse(preferences));
+                }
             } catch (error) {
                 console.log('Error fetching preferences:', error);
             }

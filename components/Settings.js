@@ -1,16 +1,27 @@
-import React from 'react';
-import { View, Text} from 'react-native';
+import React, { useState } from 'react';
+import { ScrollView, View, Text, TouchableOpacity } from 'react-native';
 import Preferences from './Preferences';
+import styles from "../styles/styles"
 
-const Settings = () => {
-  //edit preferences here and other settings
-  
+const Home = () => {
+  const [preferencesVisible, setPreferencesVisible] = useState(false);
+
+  const togglePreferences = () => {
+    setPreferencesVisible(!preferencesVisible);
+  };
+
   return (
-      <View >
-        <Text>Settings</Text>
-        <Preferences />
+    <ScrollView>
+      <View style={styles.settingsContainer}>
+        <Text style={styles.homeText}>Settings</Text>
+        <TouchableOpacity onPress={togglePreferences} style={styles.preferencesButton}>
+          <Text style={styles.buttonText}>Edit references</Text>
+        </TouchableOpacity>
+        {preferencesVisible && <Preferences />}
       </View>
+    </ScrollView>
   );
 };
 
-export default Settings;
+export default Home;
+
