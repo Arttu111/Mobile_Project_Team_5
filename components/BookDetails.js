@@ -22,6 +22,7 @@ const BookDetails = ({ route }) => {
     }
 
     const navigation = useNavigation();
+    const { setSearchTerm } = useGlobalContext();
 
     const [showAllPublishers, setShowAllPublishers] = useState(false);
     const [showAllSubjects, setShowAllSubjects] = useState(false);
@@ -59,6 +60,17 @@ const BookDetails = ({ route }) => {
         navigation.navigate('FullscreenCover', {name: title, bookCover: {cover_img}});
     }
 
+    const searchAuthor = () => {
+        const tempSearchTerm = Array.isArray(author) ? author.join(", ") : '';
+        if (tempSearchTerm === '')
+        {}
+        else
+        {
+            setSearchTerm(tempSearchTerm);
+            navigation.navigate('BookList', {name: tempSearchTerm});
+        }
+    }
+
     return (
         <ScrollView>
             <View>
@@ -66,7 +78,9 @@ const BookDetails = ({ route }) => {
                     <Image source={{ uri: cover_img }} style={{ width: 200, height: 300 }} />
                 </TouchableOpacity>
                 <Text>Title: {title}</Text>
-                <Text>Author: {Array.isArray(author) ? author.join(", ") : 'No author information available'}</Text>
+                <TouchableOpacity onPress={searchAuthor}>
+                    <Text>Author: {Array.isArray(author) ? author.join(", ") : 'No author information available'}</Text>
+                </TouchableOpacity>
                 <Text>Total Editions: {edition_count}</Text>
                 <Text>First Publish Year: {first_publish_year}</Text>
                 {available_online && (
