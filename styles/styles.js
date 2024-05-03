@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     padding: 10,
     border: "1px solid black",
     borderRadius: 5,
-    alignItems: 'center'
+    alignItems: 'center',
   },
   layoutButtonText: {
     color: '#000000',
@@ -37,6 +37,20 @@ const styles = StyleSheet.create({
   animation: {
     height: 210,
     aspectRatio: 1
+  },
+  booklistContentShadow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    backgroundColor:"#fcf0e4",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   booklistContent: {
     flexDirection: 'row',
@@ -133,7 +147,18 @@ const styles = StyleSheet.create({
   },
   settingsContainer: {
     alignItems: 'center',
-    backgroundColor: "#fcf0e4"
+    backgroundColor: "#fcf0e4",
+    marginHorizontal:20,
+    marginVertical: 20,
+    borderRadius: 20,
+    shadowColor: "#000",
+  shadowOffset: {
+    width: 0,
+    height: 2,
+  },
+  shadowOpacity: 0.30,
+  shadowRadius: 3.9,
+  elevation: 5,
   },
 });
 

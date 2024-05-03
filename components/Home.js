@@ -11,7 +11,7 @@ import PreferenceList from './PreferenceList';
 export default function App() {
 
   return (
-    <SafeAreaView style={{ flex: 1, marginTop: 30, backgroundColor: "#fcf0e4" }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#fcf0e4" }}>
       <Header title={<Text>Library app</Text>} />
       <ScrollView>
         <Text style={styles.homeText}>Search books from our library!</Text>
@@ -24,7 +24,8 @@ export default function App() {
         />
         <StatusBar style="auto" />
       </ScrollView>
-      <Footer />
+      {/* <Footer /> */}
+      {/* Footer temporarily hidden as it has no content right now */}
     </SafeAreaView>
   );
 }

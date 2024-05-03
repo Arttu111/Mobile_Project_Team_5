@@ -36,7 +36,7 @@ const BookList = () => {
           <TouchableOpacity onPress={changeLayout} style={styles.layoutButton}>
               <Text style={styles.layoutButtonText}>Change Layout</Text>
           </TouchableOpacity>
-        <ScrollView contentContainerStyle={styles.booklistContent}>
+        <ScrollView contentContainerStyle={styles.booklistContentShadow}>
           <View >
             <View >
               <Text>{resultTitle}</Text>
