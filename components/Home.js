@@ -12,7 +12,7 @@ export default function App() {
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fcf0e4" }}>
-      <Header title={<Text>Library app</Text>} />
+      <Header title={<Text>Library App</Text>} />
       <ScrollView>
         <Text style={styles.homeText}>Search books from our library!</Text>
         <Search />
