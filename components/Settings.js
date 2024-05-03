@@ -11,11 +11,11 @@ const Home = () => {
   };
 
   return (
-    <ScrollView>
+    <ScrollView style={{ flex: 1, backgroundColor: "#fcf0e4" }}>
       <View style={styles.settingsContainer}>
         <Text style={styles.homeText}>Settings</Text>
         <TouchableOpacity onPress={togglePreferences} style={styles.preferencesButton}>
-          <Text style={styles.buttonText}>Edit references</Text>
+          <Text style={styles.buttonText}>Edit Preferences</Text>
         </TouchableOpacity>
         {preferencesVisible && <Preferences />}
       </View>
