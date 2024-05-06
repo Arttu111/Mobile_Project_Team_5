@@ -3,6 +3,7 @@ import { View, TextInput, TouchableOpacity, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useGlobalContext } from '../context';
 import styles from '../styles/styles';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const Search = () => {
   const { setSearchTerm } = useGlobalContext();
@@ -26,12 +27,12 @@ const Search = () => {
     <View>
       <View>
         <TextInput
-          style={{ height: 40, borderColor: 'gray', borderWidth: 1, paddingHorizontal: 10, marginTop: 20,fontWeight:"bold",fontSize:20, }}
+          style={{ height: 40, borderColor: 'gray', borderWidth: 1, paddingHorizontal: 10, marginTop: 20,fontWeight:"bold",fontSize:20, marginHorizontal: 12, borderRadius: 5,}}
           placeholder="search ..."
           onChangeText={(text) => searchText.current = text}
         />
         <TouchableOpacity onPress={handleSubmit} style={styles.searchButton}>
-          <Text style={{ fontWeight:"bold" , color:"white", fontSize:20}}>Search</Text>
+          <Text style={{ fontWeight:"bold" , color:"white", fontSize:20}}><MaterialCommunityIcons name="magnify" size={21} color="white" style={{ height: 10 }}></MaterialCommunityIcons>Search</Text>
         </TouchableOpacity>
       </View>
     </View>

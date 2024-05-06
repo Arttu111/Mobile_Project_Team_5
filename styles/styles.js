@@ -6,8 +6,17 @@ const styles = StyleSheet.create({
     backgroundColor: '#BF40BF',
     padding: 10,
     border: "1px solid black",
-    borderRadius: 5,
-    
+    borderRadius: 20,
+    marginHorizontal: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 2,
+    elevation: 5,
+    marginTop: 2,
   },
   layoutButton: {
     backgroundColor: '#fffff',
@@ -56,7 +65,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
-    backgroundColor:"#fcf0e4"
+    backgroundColor:"#fcf0e4",
+    marginHorizontal: 5,
   },
   bookItem: {
     width: '100%',
@@ -97,6 +107,7 @@ const styles = StyleSheet.create({
     paddingTop:18,
   fontSize:20,
   fontWeight:"bold",
+  marginHorizontal: 10,
   },
   recBookItem: {
     width: '30%',
